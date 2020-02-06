@@ -9,11 +9,9 @@ use CoffeeCode\Router\Router;
 $router = new Router(site());
 
 $router->namespace("Source\Controllers");
-
 /*
- * WEB
+ * WEB Login
  */
-
 $router->group(null);
 $router->get("/", "Web:login", "web.login");
 $router->get("/cadastrar", "Web:register", "web.register");
@@ -28,7 +26,6 @@ $router->post("/login", "Auth:login", "auth.login");
 $router->post("/register", "Auth:register", "auth.register");
 $router->post("/forget", "Auth:forget", "auth.forget");
 $router->post("/reset", "Auth:reset", "auth.reset");
-
 /*
  * AUTH SOCIAL
  */
@@ -41,9 +38,8 @@ $router->get("/google", "Auth:google", "auth.google");
  */
 $router->group("/me");
 $router->get("/", "App:home", "app.home");
+$router->get("/teste", "App:teste", "app.teste");
 $router->get("/sair", "App:logoff", "app.logoff");
-
-
 /*
  * ROTA DE ERROR
  */
@@ -61,4 +57,5 @@ $router->dispatch();
 if ($router->error()){
     $router->redirect("web.error", ["errcode" => $router->error()]);
 }
+
 ob_end_flush();
