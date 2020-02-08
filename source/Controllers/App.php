@@ -6,6 +6,7 @@ namespace Source\Controllers;
 
 use Source\Core\Controller;
 use Source\Models\Comentario;
+use Source\Models\DadosUser;
 use Source\Models\Endereco;
 use Source\Models\User;
 use Source\Models\Usuario;
@@ -78,7 +79,7 @@ class App extends Controller
             $end->cidade = $data["cidade"];
             $end->estado = $data["estado"];
             $end->numero = $data["numero"];
-            $end->usuario_id = $_SESSION["user"];
+            $end->login_id = $_SESSION["user"];
             $end->save();
             if (!$end->save()){
                 echo $this->ajaxResponse("message", [
@@ -133,19 +134,18 @@ class App extends Controller
                 ]);
                 return;
             }//	id	titulo	texto	date    foto	usuario_id
-            $foto = (new User())->find("id = :u", "u={$_SESSION["user"]}")->fetch(true);
+            $foto = (new User())->find("id = :id", "id={$_SESSION["user"]}")->fetch(true);
 
             foreach ($foto as $item){
                 $foto = ($item->foto);
                 $nome = ($item->nome);
             }
-
             $com = new Comentario();
             $com->titulo = $data["titulo"];
             $com->texto = $data["texto"];
             $com->nome = $nome;
             $com->foto = $foto;
-            $com->usuario_id = $_SESSION["user"];
+            $com->login_id = $_SESSION["user"];
             $com->save();
             if (!$com->save()){
                 echo $this->ajaxResponse("message", [
@@ -189,16 +189,15 @@ class App extends Controller
                 ]);
                 return;
             }
-            $login_id = $_SESSION["user"];
-            $usere = (new Usuario())->find("login_id = :login_id", "login_id={$login_id}")->count();
 
-            if ($usere){
-                $user = new Usuario();
-                $userss = $user->find("login_id = :login_id", "login_id={$login_id}")->fetch(true);
-                foreach ($userss as $item) {
+                 $login_id = $_SESSION["user"];
+                $user = new DadosUser();
+                $users = $user->find("login_id = :login_id", "login_id={$login_id}")->fetch(true);
+            if ($users){
+                foreach ($users as $item) {
                     $novo = $item->id;
                 }
-                $user = (new Usuario())->findById($novo);
+                $user = (new DadosUser())->findById($novo);
                 $user->cpf = $data["cpf"];
                 $user->rg = $data["rg"];
                 $user->date = $data["date"];
@@ -211,20 +210,20 @@ class App extends Controller
                 return;
             }else{
                 //cpf	rg	date	tipo	celular	ativo	login_id
-                $user = new Usuario();
+                $user = new DadosUser();
                 $user->cpf = $data["cpf"];
                 $user->rg = $data["rg"];
                 $user->date = $data["date"];
-                $user->tipo = "1";
                 $user->celular = $data["celular"];
-                $user->ativo = "n";
                 $user->login_id = $_SESSION["user"];
                 $user->save();
 
                 if ($user->save()){
                     echo $this->ajaxResponse("redirect", [
                         "url" => $this->router->route("app.meusdados")
+
                     ]);
+                    return;
                 }else{
                     echo $this->ajaxResponse("message", [
                         "type" => "error",
@@ -243,12 +242,9 @@ class App extends Controller
             )->render();
 
         $login_id = $_SESSION["user"];
-        $usere = (new Usuario())->find("login_id = :login_id", "login_id={$login_id}")->count();
-
-        $userc = "";
-        if ($usere){
-            $user = new Usuario();
+            $user = new DadosUser();
             $userss = $user->find("login_id = :login_id", "login_id={$login_id}")->fetch(true);
+        if ($userss){
             foreach ($userss as $teste){
                 $userc = new \stdClass();
                 $userc->cpf = $teste->cpf;

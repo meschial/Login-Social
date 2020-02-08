@@ -10,6 +10,6 @@ class Comentario extends DataLayer
 {
 public function __construct()
 {//	id	titulo	texto	date    foto	usuario_id
-    parent::__construct("comentario", ["titulo", "texto", "nome", "usuario_id"], "id", false);
+    parent::__construct("comentario", ["titulo", "texto", "nome", "login_id"], "id", false);
 }
 }

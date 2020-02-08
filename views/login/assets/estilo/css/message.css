@@ -15,6 +15,7 @@
 .message.success {
     color: #1dd1a1;
     border-color: #1dd1a1;
+    background: #ffffff;
 }
 
 .message.info {

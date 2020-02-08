@@ -69,8 +69,9 @@ use Source\Models\Conta;
                             <?php else: ?>
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" >
-                                        <?php if (!empty($user->foto)): ?>
-                                        <img src="<?= $user->foto; ?>" style="width: 55px" class="rounded-circle" alt="Circular Image">
+                                        <?php
+                                        if (!empty($user->foto)): ?>
+                                            <img src="<?= $user->foto; ?>" class="img-fluid img-thumbnail"style="width: 60px">
                                         <?php else: ?>
                                         Olá <?= $user->nome; ?>
                                         <?php endif; ?>
@@ -92,6 +93,7 @@ use Source\Models\Conta;
         </div>
     </div>
 </header>
+
 <!-- Header Area End -->
 <div class="ajax_load">
     <div class="ajax_load_box">
