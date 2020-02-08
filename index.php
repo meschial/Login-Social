@@ -10,36 +10,57 @@ $router = new Router(site());
 
 $router->namespace("Source\Controllers");
 /*
- * WEB Login
+ * SITE ABERTO
  */
 $router->group(null);
-$router->get("/", "Web:login", "web.login");
-$router->get("/cadastrar", "Web:register", "web.register");
+$router->get("/", "Site:inicio", "site.inicio");
+
+/*
+ * PROTEGIDOS GET
+ */
+$router->group("/me");
+$router->get("/", "App:iniciocliente", "app.iniciocliente");
+$router->get("/meusdados", "App:home", "app.home");
+$router->get("/endereco", "App:endereco", "app.endereco");
+$router->get("/comentario", "App:comentario", "app.comentario");
+$router->get("/cartao", "App:cartao", "app.cartao");
+
+$router->get("/sair", "App:logoff", "app.logoff");
+
+
+/*
+ * PROTEGIDOS POST
+ */
+$router->post("/meusdados", "App:home", "app.home");
+$router->post("/endereco", "App:endereco", "app.endereco");
+$router->post("/comentario", "App:comentario", "app.comentario");
+
+/*
+ * GET LOGIN
+ */
+$router->group(null);
+$router->get("/login", "Web:login", "web.login");
+$router->get("/cadastrar", "Web:cadastrar", "web.cadastrar");
 $router->get("/recuperar", "Web:forget", "web.forget");
 $router->get("/senha/{email}/{forget}", "Web:reset", "web.reset");
 
 /*
- * AUTH
+ * POST LOGIN
  */
 $router->group(null);
 $router->post("/login", "Auth:login", "auth.login");
-$router->post("/register", "Auth:register", "auth.register");
+$router->post("/cadastrar", "Auth:cadastrar", "auth.cadastrar");
 $router->post("/forget", "Auth:forget", "auth.forget");
 $router->post("/reset", "Auth:reset", "auth.reset");
+
 /*
- * AUTH SOCIAL
+ * LOGIN SOCIAL
  */
 $router->group(null);
 $router->get("/facebook", "Auth:facebook", "auth.facebook");
 $router->get("/google", "Auth:google", "auth.google");
 
-/*
- * PROFILE
- */
-$router->group("/me");
-$router->get("/", "App:home", "app.home");
-$router->get("/teste", "App:teste", "app.teste");
-$router->get("/sair", "App:logoff", "app.logoff");
+
 /*
  * ROTA DE ERROR
  */
@@ -57,5 +78,4 @@ $router->dispatch();
 if ($router->error()){
     $router->redirect("web.error", ["errcode" => $router->error()]);
 }
-
 ob_end_flush();

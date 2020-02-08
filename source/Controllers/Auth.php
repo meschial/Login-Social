@@ -12,6 +12,10 @@ use Source\Core\Controller;
 use Source\Models\User;
 use Source\Support\Email;
 
+/**
+ * Class Auth
+ * @package Source\Controllers
+ */
 class Auth extends Controller
 {
     /**
@@ -33,8 +37,8 @@ class Auth extends Controller
 
         if (!$email || !$passwd){
             echo $this->ajaxResponse("message", [
-                "type" => "alert",
-                "message" => "Informe seus dados para logar!"
+               "type" => "alert",
+               "message" => "Informe seus dados para logar!"
             ]);
             return;
         }
@@ -61,7 +65,7 @@ class Auth extends Controller
     /**
      * @param $data
      */
-    public function register($data): void
+    public function cadastrar($data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
         if (in_array("", $data)){
@@ -85,8 +89,8 @@ class Auth extends Controller
 
         if (!$user->save()){
             echo $this->ajaxResponse("message", [
-                "type" => "error",
-                "message" => $user->fail()->getMessage()
+               "type" => "error",
+               "message" => $user->fail()->getMessage()
             ]);
             return;
         }
@@ -106,7 +110,7 @@ class Auth extends Controller
         $email = filter_var($data["email"], FILTER_VALIDATE_EMAIL);
         if (!$email){
             echo $this->ajaxResponse("message", [
-                "type" => "alert",
+               "type" => "alert",
                 "message" => "Informe seu E-mail para recuperar a senha!"
             ]);
             return;
@@ -127,22 +131,22 @@ class Auth extends Controller
 
         $email = new Email();
         $email->add(
-            "Recupe sua senha | ". site("name"),
-            $this->view->render("emails/recover", [
-                "user" => $user,
-                "link" => $this->router->route("web.reset", [
-                    "email" => $user->email,
-                    "forget" => $user->forget
-                ])
-            ]),
-            "{$user->nome} {$user->sobrenome}",
-            $user->email
+          "Recupe sua senha | ". site("name"),
+          $this->view->render("emails/recover", [
+              "user" => $user,
+              "link" => $this->router->route("web.reset", [
+                  "email" => $user->email,
+                  "forget" => $user->forget
+              ])
+          ]),
+          "{$user->nome} {$user->sobrenome}",
+          $user->email
         )->send();
 
         flash("success", "Enviamos um link de recuperação para seu E-mail");
 
         echo $this->ajaxResponse("redirect",[
-            "url" => $this->router->route("web.forget")
+           "url" => $this->router->route("web.forget")
         ]);
     }
 
@@ -246,7 +250,7 @@ class Auth extends Controller
         $link = $this->router->route("web.login");
         flash("info",
             "Olá {$facebook_user->getFirstName()}, <b>se já tem uma conta clique em <a title='Fazer login' href='{$link}'>FAZER LOGIN</a></b>, ou complete seu cadastro");
-        $this->router->redirect("web.register");
+        $this->router->redirect("web.cadastrar");
 
 
     }
@@ -300,7 +304,7 @@ class Auth extends Controller
         $link = $this->router->route("web.login");
         flash("info",
             "Olá {$google_user->getFirstName()}, <b>se já tem uma conta clique em <a title='Fazer login' href='{$link}'>FAZER LOGIN</a></b>, ou complete seu cadastro!");
-        $this->router->redirect("web.register");
+        $this->router->redirect("web.cadastrar");
 
     }
 
@@ -327,4 +331,5 @@ class Auth extends Controller
             unset($_SESSION["google_auth"]);
         }
     }
+
 }

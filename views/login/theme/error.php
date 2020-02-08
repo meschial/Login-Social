@@ -1,4 +1,4 @@
-<?php $v->layout("theme/_theme"); ?>
+<?php $v->layout("theme/theme"); ?>
 
 <div class="page">
     <h1>Ooops, erro <?= $error; ?></h1>

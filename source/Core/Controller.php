@@ -1,12 +1,14 @@
 <?php
 
+
 namespace Source\Core;
+
 
 use CoffeeCode\Optimizer\Optimizer;
 use CoffeeCode\Router\Router;
 use League\Plates\Engine;
 
-class Controller
+abstract class Controller
 {
     /** @var Engine */
     protected $view;
@@ -41,4 +43,5 @@ class Controller
     {
         return \GuzzleHttp\json_encode([$param => $values]);
     }
+
 }

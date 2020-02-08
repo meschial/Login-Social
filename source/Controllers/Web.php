@@ -7,6 +7,10 @@ namespace Source\Controllers;
 use Source\Core\Controller;
 use Source\Models\User;
 
+/**
+ * Class Web
+ * @package Source\Controllers
+ */
 class Web extends Controller
 {
     /**
@@ -28,12 +32,12 @@ class Web extends Controller
     public function login(): void
     {
         $head = $this->seo->optimize(
-            "Crie sua conta no". site("name"),
-            site("desc"),
-            $this->router->route("web.login"),
-            routeImage("Login"),
-            )->render();
-        echo $this->view->render("theme/login",[
+          "Crie sua conta no". site("name"),
+          site("desc"),
+          $this->router->route("web.login"),
+          routeImage("Login"),
+        )->render();
+        echo $this->view->render("theme/login/login",[
             "head" => $head
         ]);
     }
@@ -41,12 +45,12 @@ class Web extends Controller
     /**
      *
      */
-    public function register(): void
+    public function cadastrar(): void
     {
         $head = $this->seo->optimize(
             "Crie sua conta no". site("name"),
             site("desc"),
-            $this->router->route("web.register"),
+            $this->router->route("web.cadastrar"),
             routeImage("Register"),
             )->render();
 
@@ -63,7 +67,7 @@ class Web extends Controller
             $form_user->email = $socialUser->getEmail();
         }
 
-        echo $this->view->render("theme/register",[
+        echo $this->view->render("theme/login/cadastrar",[
             "head" => $head,
             "user" => $form_user
         ]);
@@ -80,7 +84,7 @@ class Web extends Controller
             $this->router->route("web.forget"),
             routeImage("Forget"),
             )->render();
-        echo $this->view->render("theme/forget",[
+        echo $this->view->render("theme/login/forget",[
             "head" => $head
         ]);
     }
@@ -118,7 +122,7 @@ class Web extends Controller
             $this->router->route("web.reset"),
             routeImage("Reset"),
             )->render();
-        echo $this->view->render("theme/reset",[
+        echo $this->view->render("theme/login/reset",[
             "head" => $head
         ]);
     }
