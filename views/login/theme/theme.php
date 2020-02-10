@@ -175,7 +175,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Javascript -->
 <script src="<?= asset("/../js/jquery.js"); ?>"></script>
 <script src="<?= asset("/../js/jquery-ui.js"); ?>"></script>
-<script src="<?= asset("/../js/form.js"); ?>"></script>
+<?= $v->section("scripts"); ?>
 <script src="<?= asset("/../js/popper.min.js"); ?>"></script>
 <script src="<?= asset("/../js/bootstrap.min.js"); ?>"></script>
 <script src="<?= asset("/../js/main.js"); ?>"></script>

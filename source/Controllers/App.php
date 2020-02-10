@@ -56,8 +56,8 @@ class App extends Controller
         if (!empty($_FILES)){
             $upload = new Image("img", "motorista");
 
-            if (!empty($_FILES["img"])){
-                $file = $_FILES["img"];
+            if (!empty($_FILES["fileUpload"])){
+                $file = $_FILES["fileUpload"];
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())){
                     echo $this->ajaxResponse("message",[
                         "type" => "error",

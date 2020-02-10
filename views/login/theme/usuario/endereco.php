@@ -62,7 +62,9 @@
             </div>
         </div>
 
-
+        <?php $v->start("scripts"); ?>
+        <script src="<?= asset("/js/form.js"); ?>"></script>
+        <?php $v->end(); ?>
             <!-- Adicionando JQuery -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"
                     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

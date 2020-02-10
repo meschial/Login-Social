@@ -1,4 +1,5 @@
 <?php $v->layout("theme/usuario/meusdados"); ?>
+
 <div class="col-lg-8">
     <div class="main-content">
         <div class="single-content1">
@@ -26,7 +27,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <span class="glyphicon glyphicon-pencil"></span> <label> Foto:</label>
-                                    <input type="file" name="img">
+                                    <input type="file" id="fileUpload" name="fileUpload" />
                                 </div>
                             </div>
                             <div class="job-btn align-self-center">

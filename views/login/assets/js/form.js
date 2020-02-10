@@ -6,6 +6,7 @@ $(function () {
         var action = form.attr("action");
         var data = form.serialize();
 
+
         $.ajax({
             url: action,
             data: data,
@@ -16,6 +17,10 @@ $(function () {
             },
             success: function (su) {
                 ajax_load("close");
+                $("#formulario").submit(function() {
+                    var formData = new FormData(this);
+
+                });
 
                 if (su.message) {
                     var view = '<div class="message ' + su.message.type + '">' + su.message.message + '</div>';
