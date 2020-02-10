@@ -20,6 +20,9 @@
                         <a href="<?= $router->route("app.endereco"); ?>" class="sidebar-btn mb-3">
                             <strong>Endereço</strong>
                         </a>
+                        <a href="<?= $router->route("app.motorista"); ?>" class="sidebar-btn mb-3">
+                            <strong>Motorista</strong>
+                        </a>
                     </div>
                     <div class="single-item mb-4">
                         <h4 class="mb-4">job by location</h4>

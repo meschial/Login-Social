@@ -8,6 +8,7 @@ use Source\Core\Controller;
 use Source\Models\Comentario;
 use Source\Models\DadosUser;
 use Source\Models\Endereco;
+use Source\Models\Motorista;
 use Source\Models\User;
 
 /**
@@ -52,23 +53,37 @@ class App extends Controller
     }
 
     public function motorista($data)
-    {
+    {//id	tipo_cnh	cnh	foto	ativo	login_id
+        if (!empty($data)){
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+            if (in_array("", $data)){
+                flash("info", "{$this->user->nome}, informe todos os campos!");
+                $this->router->redirect("app.motorista");
+                return;
+            }
+        }
         if (!empty($_FILES)){
             $upload = new Image("img", "motorista");
 
             if (!empty($_FILES["fileUpload"])){
                 $file = $_FILES["fileUpload"];
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())){
-                    echo $this->ajaxResponse("message",[
-                        "type" => "error",
-                        "message" => "informe uma imagem valida!"
-                    ]);
+                    flash("success", "{$this->user->nome}, Deu ruim kkk!");
                     return;
                 }else{
-                  $uploaded =  $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 500);
-
+                  $uploaded =  $upload->upload($file, pathinfo($_SESSION["user"], PATHINFO_FILENAME), 500);
+                    $mot = new Motorista();
+                    $mot->tipo_cnh = $data["tipo_cnh"];
+                    $mot->cnh = $data["cnh"];
+                    $mot->foto = $uploaded;
+                    $mot->ativo = "N";
+                    $mot->login_id = $_SESSION["user"];
+                    $mot->save();
+                    flash("success", "{$this->user->nome}, eu acho q salvou kk olha la!!");
+                    $this->router->redirect("app.motorista");
                 }
             }
+
 
         }
 
