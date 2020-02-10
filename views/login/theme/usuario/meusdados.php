@@ -1,40 +1,70 @@
 <?php $v->layout("theme/theme"); ?>
-<div class="container">
-    <div class="row">
-        <div class="form-group col-md-6" >
-            <div class="text-center">
-                <h1 style="color: #6c757d">Cadastro de Cliente</h1>
+
+<section class="job-single-content section-padding" style="margin-top: -5%">
+    <div class="container">
+        <div class="row">
+            <?php if (!empty($v->section("content"))): ?>
+                <?= $v->section("content"); ?>
+            <?php endif; ?>
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="single-item mb-4">
+                        <h4 class="mb-4">jobs type</h4>
+                        <a href="<?= $router->route("app.comentario"); ?>" class="sidebar-btn mb-3">
+                            <strong>Comentário</strong>
+                        </a>
+                        <a href="<?= $router->route("app.home");?>" class="sidebar-btn mb-3">
+                            <strong>Meus Dados</strong>
+                        </a>
+                        <a href="<?= $router->route("app.endereco"); ?>" class="sidebar-btn mb-3">
+                            <strong>Endereço</strong>
+                        </a>
+                    </div>
+                    <div class="single-item mb-4">
+                        <h4 class="mb-4">job by location</h4>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between mb-3">
+                            <span>New York</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between mb-3">
+                            <span>California</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between mb-3">
+                            <span>Swizerland</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between mb-3">
+                            <span>Canada</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between">
+                            <span>Sweden</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                    </div>
+                    <div class="single-item mb-4">
+                        <h4 class="mb-4">salary range</h4>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between mb-3">
+                            <span>$20,000-$30,000</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between mb-3">
+                            <span>$25,000-$45,000</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                        <a href="#" class="sidebar-btn d-flex justify-content-between">
+                            <span>$40,000-$70,000</span>
+                            <span class="text-right">25 job</span>
+                        </a>
+                    </div>
+                    <div class="single-item">
+                        <h4 class="mb-4">filter by salary</h4>
+                        <input type="text" id="range" value="" name="range" />
+                    </div>
+                </div>
             </div>
-            <form class="auth_form" action="<?= $router->route("app.home"); ?>" method="post" enctype="multipart/form-data">
-
-                <div class="login_form_callback">
-                    <?= flash(); ?>
-                </div>
-
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <span class="glyphicon glyphicon-list-alt"></span> <label> CPF:</label>
-                        <input type="text" value="<?= $userc->cpf ?>" class="form-control" name="cpf">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <span class="glyphicon glyphicon-list-alt"></span> <label> RG:</label>
-                        <input type="text" value="<?= $userc->rg; ?>" class="form-control" name="rg">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <span class="glyphicon glyphicon-calendar"></span> <label>Data Nascimento:</label>
-                        <input type="date"  value="<?= $userc->date; ?>" class="form-control"  name="date">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <span class="glyphicon glyphicon-earphone"> </span> <label>N. Celular:</label>
-                        <input type="text" value="<?= $userc->celular; ?>" class="form-control" name="celular">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-outline-success">Cadastrar</button>
-            </form>
         </div>
     </div>
-</div>
+</section>

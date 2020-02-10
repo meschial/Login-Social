@@ -14,16 +14,20 @@ $router->namespace("Source\Controllers");
  */
 $router->group(null);
 $router->get("/", "Site:inicio", "site.inicio");
+$router->get("/teste", "Site:teste", "site.teste");
+$router->post("/teste", "Site:teste", "site.teste");
 
 /*
  * PROTEGIDOS GET
  */
 $router->group("/me");
 $router->get("/", "App:iniciocliente", "app.iniciocliente");
-$router->get("/meusdados", "App:home", "app.home");
+$router->get("/documentos", "App:home", "app.home");
 $router->get("/endereco", "App:endereco", "app.endereco");
 $router->get("/comentario", "App:comentario", "app.comentario");
 $router->get("/cartao", "App:cartao", "app.cartao");
+$router->get("/meusdados", "App:meusdados", "app.meusdados");
+$router->get("/motorista", "App:motorista", "app.motorista");
 
 $router->get("/sair", "App:logoff", "app.logoff");
 
@@ -31,9 +35,10 @@ $router->get("/sair", "App:logoff", "app.logoff");
 /*
  * PROTEGIDOS POST
  */
-$router->post("/meusdados", "App:home", "app.home");
+$router->post("/documentos", "App:home", "app.home");
 $router->post("/endereco", "App:endereco", "app.endereco");
 $router->post("/comentario", "App:comentario", "app.comentario");
+$router->post("/motorista", "App:motorista", "app.motorista");
 
 /*
  * GET LOGIN

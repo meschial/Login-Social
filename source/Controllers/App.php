@@ -3,13 +3,12 @@
 
 namespace Source\Controllers;
 
-
+use CoffeeCode\Uploader\Image;
 use Source\Core\Controller;
 use Source\Models\Comentario;
 use Source\Models\DadosUser;
 use Source\Models\Endereco;
 use Source\Models\User;
-use Source\Models\Usuario;
 
 /**
  * Class App
@@ -35,6 +34,55 @@ class App extends Controller
             $this->router->redirect("web.login");
         }
         //RESTRIÇÃO DE ACESSO
+    }
+
+    public function meusdados()
+    {
+        $head = $this->seo->optimize(
+            "Comentarios",
+            site("desc"),
+            $this->router->route("app.meusdados"),
+            routeImage("meusdados")
+        )->render();
+
+        echo $this->view->render("theme/usuario/comentario",[
+            "head" => $head,
+            "user" => $this->user,
+        ]);
+    }
+
+    public function motorista($data)
+    {
+        if (!empty($_FILES)){
+            $upload = new Image("img", "motorista");
+
+            if (!empty($_FILES["img"])){
+                $file = $_FILES["img"];
+                if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())){
+                    echo $this->ajaxResponse("message",[
+                        "type" => "error",
+                        "message" => "informe uma imagem valida!"
+                    ]);
+                    return;
+                }else{
+                  $uploaded =  $upload->upload($file, pathinfo($file["name"], PATHINFO_FILENAME), 500);
+
+                }
+            }
+
+        }
+
+        $head = $this->seo->optimize(
+            "Comentarios",
+            site("desc"),
+            $this->router->route("app.meusdados"),
+            routeImage("meusdados")
+        )->render();
+
+        echo $this->view->render("theme/usuario/motorista",[
+            "head" => $head,
+            "user" => $this->user,
+        ]);
     }
 
 
@@ -81,18 +129,21 @@ class App extends Controller
             $end->numero = $data["numero"];
             $end->login_id = $_SESSION["user"];
             $end->save();
-            if (!$end->save()){
+
+            if ($end->save()){
+                flash("success", "{$this->user->nome}, seu endereço foi salvo com sucesso!");
+
+                echo $this->ajaxResponse("redirect",[
+                    "url" => $this->router->route("app.endereco")
+                ]);
+                return;
+            }else{
                 echo $this->ajaxResponse("message", [
                     "type" => "error",
                     "message" => $end->fail()->getMessage()
                 ]);
                 return;
-            }else{
-                echo $this->ajaxResponse("redirect", [
-                    "url" => $this->router->route("app.endereco")
-                ]);
             }
-            return;
         }
 
         $head = $this->seo->optimize(
@@ -140,6 +191,9 @@ class App extends Controller
                 $foto = ($item->foto);
                 $nome = ($item->nome);
             }
+            if (empty($foto)){
+                $foto = "https://gclaw.com.br/wp-content/themes/tema-gclaw-2017/assets/images/sem-foto.jpg";
+            }
             $com = new Comentario();
             $com->titulo = $data["titulo"];
             $com->texto = $data["texto"];
@@ -154,11 +208,12 @@ class App extends Controller
                 ]);
                 return;
             }else{
+                flash("success", "Olá {$nome}, sua opnião foi registrada com sucesso!");
                 echo $this->ajaxResponse("redirect", [
                     "url" => $this->router->route("app.comentario")
                 ]);
+                return;
             }
-            return;
         }
         //id	titulo	texto	date    foto	usuario_id
         $head = $this->seo->optimize(
@@ -185,12 +240,11 @@ class App extends Controller
             if (in_array("", $data)){
                 echo $this->ajaxResponse("message",[
                     "type" => "error",
-                    "message" => "Informe todos os campos para cadastrar!"
+                    "message" => "Informe todos os campos!"
                 ]);
                 return;
             }
-
-                 $login_id = $_SESSION["user"];
+                $login_id = $_SESSION["user"];
                 $user = new DadosUser();
                 $users = $user->find("login_id = :login_id", "login_id={$login_id}")->fetch(true);
             if ($users){
@@ -203,11 +257,21 @@ class App extends Controller
                 $user->date = $data["date"];
                 $user->celular = $data["celular"];
                 $user->save();
-                echo $this->ajaxResponse("redirect", [
-                    "url" => $this->router->route("app.meusdados")
 
-                ]);
-                return;
+                if ($user->save()){
+                    flash("success", "Seus dados foram atualizados {$this->user->nome}!");
+
+                    echo $this->ajaxResponse("redirect",[
+                        "url" => $this->router->route("app.documentos")
+                    ]);
+                    return;
+                }else{
+                    echo $this->ajaxResponse("message", [
+                        "type" => "error",
+                        "message" => $user->fail()->getMessage()
+                    ]);
+                    return;
+                }
             }else{
                 //cpf	rg	date	tipo	celular	ativo	login_id
                 $user = new DadosUser();
@@ -219,9 +283,10 @@ class App extends Controller
                 $user->save();
 
                 if ($user->save()){
-                    echo $this->ajaxResponse("redirect", [
-                        "url" => $this->router->route("app.meusdados")
+                    flash("success", "{$this->user->nome}, Seus dados foram salvos!");
 
+                    echo $this->ajaxResponse("redirect",[
+                        "url" => $this->router->route("app.documentos")
                     ]);
                     return;
                 }else{
@@ -259,7 +324,7 @@ class App extends Controller
             $userc->date = null;
             $userc->celular = null;
         }
-        echo $this->view->render("theme/usuario/meusdados",[
+        echo $this->view->render("theme/usuario/documentos",[
             "head" => $head,
             "user" => $this->user,
             "userc" => $userc

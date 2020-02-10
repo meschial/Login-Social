@@ -23,24 +23,26 @@
     </section>
     <!-- Banner Area End -->
 
-    <!-- Search Area Starts -->
-    <div class="search-area">
-        <div class="search-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form action="#" class="d-md-flex justify-content-between">
-
-                            <input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" required>
-                            <input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" required>
-                            <input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" required>
-                            <button type="submit" class="template-btn">find job</button>
-                        </form>
-                    </div>
+<!-- Search Area Starts -->
+<div class="search-area">
+    <div class="search-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="#" class="d-md-flex justify-content-between">
+                        <input type="text" placeholder = "Digite CEP de Origem" required>
+                        <input type="text" placeholder = "Digite CEP de Destino" required>
+                        <input type="text" placeholder = "Digite a Data do envio" required>
+                        <button type="submit" class="template-btn">Pesquisar</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </div><br>
+    </div>
+</div>
+<!-- Search Area End -->
+
+
     <!-- Search Area End -->
 <div class="container" style="margin-top: 2%">
     <div class="row">
@@ -61,7 +63,7 @@
                 <p class="card-text"><?= $tex->texto; ?></p>
             </div>
             <div class="card-footer">
-                <small class="text-muted"><?= $tex->nome; ?></small>
+                <small class="text-muted">Nome: <?= $tex->nome; ?></small>
             </div>
         </div>
         <?php endforeach; ?>

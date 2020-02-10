@@ -2,9 +2,11 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/coffeecode/cropper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/coffeecode/datalayer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/coffeecode/optimizer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/coffeecode/router" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/coffeecode/uploader" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
@@ -13,6 +15,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-facebook" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-google" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/plates" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/masterkey/valid-docs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasmullie/path-converter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />

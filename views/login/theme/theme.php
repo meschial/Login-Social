@@ -1,8 +1,3 @@
-<?php
-
-use Source\Models\Conta;
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,15 +9,15 @@ use Source\Models\Conta;
     <?= $head; ?>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= asset("/../estilo/favicon.png"); ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= asset("/../favicon.png"); ?>" type="image/x-icon">
     <!-- CSS Files -->
-    <link rel="stylesheet" href="<?= asset("/../estilo/css/message.css"); ?>">
-    <link rel="stylesheet" href="<?= asset("/../estilo/css/form.css"); ?>">
-    <link rel="stylesheet" href="<?= asset("/../estilo/css/load.css"); ?>">
-    <link rel="stylesheet" href="<?= asset("/../estilo/css/icon.css"); ?>">
-    <link rel="stylesheet" href="<?= asset("/../estilo/fonts/flat-icon/flaticon.css"); ?>">
-    <link rel="stylesheet" href="<?= asset("/../estilo/css/bootstrap.min.css"); ?>">
-    <link rel="stylesheet" href="<?= asset("/../estilo/css/style.css"); ?>">
+    <link rel="stylesheet" href="<?= asset("/../css/message.css"); ?>">
+    <link rel="stylesheet" href="<?= asset("/../css/form.css"); ?>">
+    <link rel="stylesheet" href="<?= asset("/../css/load.css"); ?>">
+    <link rel="stylesheet" href="<?= asset("/../css/icon.css"); ?>">
+    <link rel="stylesheet" href="<?= asset("/../fonts/flat-icon/flaticon.css"); ?>">
+    <link rel="stylesheet" href="<?= asset("/../css/bootstrap.min.css"); ?>">
+    <link rel="stylesheet" href="<?= asset("/../css/style.css"); ?>">
 </head>
 <body>
 <!-- Preloader Starts -->
@@ -33,7 +28,7 @@ use Source\Models\Conta;
         <div class="row">
             <div class="col-lg-2">
                 <div class="logo-area">
-                    <a href=""><img src="<?= asset("/../estilo/images/logo.jpg"); ?>" alt="logo"></a>
+                    <a href=""><img src="<?= asset("/../images/logo.jpg"); ?>" alt="logo"></a>
                 </div>
             </div>
             <div class="col-lg-10">
@@ -65,7 +60,7 @@ use Source\Models\Conta;
                         <li class="menu-btn">
                             <?php if (empty($_SESSION["user"])): ?>
                             <a href="<?= $router->route("web.login"); ?>" class="login">Entrar</a>
-                            <a href="<?= $router->route("web.cadastrar"); ?>" class="template-btn">cadastrar</a>
+                            <a href="<?= $router->route("web.login"); ?>" class="template-btn">cadastrar</a>
                             <?php else: ?>
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" >
@@ -77,11 +72,10 @@ use Source\Models\Conta;
                                         <?php endif; ?>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="<?= $router->route("app.home");?>">Meus Dados</a>
+                                        <a class="dropdown-item" href="<?= $router->route("app.meusdados");?>">Meus Dados</a>
                                         <a class="dropdown-item" href="<?= $router->route("app.cartao");?>">Pag> Cartão</a>
-                                        <a class="dropdown-item" href="<?= $router->route("app.endereco"); ?>">Endereço</a>
                                         <a class="dropdown-item" href="<?= $router->route("app.iniciocliente");?>">Resultados</a>
-                                        <a class="dropdown-item" href="<?= $router->route("app.comentario");?>">Comentarios</a>
+                                        <a class="dropdown-item" href="<?= $router->route("app.motorista");?>">Motorista</a>
                                         <a class="dropdown-item" href="<?= $router->route("app.logoff"); ?>">sair</a>
                                     </div>
                                 </div>
@@ -93,6 +87,8 @@ use Source\Models\Conta;
         </div>
     </div>
 </header>
+
+
 
 <!-- Header Area End -->
 <div class="ajax_load">
@@ -137,14 +133,14 @@ use Source\Models\Conta;
                     <div class="single-widge-home">
                         <h3 class="mb-4">instagram feed</h3>
                         <div class="feed">
-                            <img src="<?= asset("/../estilo/images/feed1.jpg"); ?>" alt="feed">
-                            <img src="<?= asset("/../estilo/images/feed2.jpg"); ?>" alt="feed">
-                            <img src="<?= asset("/../estilo/images/feed3.jpg"); ?>" alt="feed">
-                            <img src="<?= asset("/../estilo/images/feed4.jpg"); ?>" alt="feed">
-                            <img src="<?= asset("/../estilo/images/feed5.jpg"); ?>" alt="feed">
-                            <img src="<?= asset("/../estilo/images/feed6.jpg"); ?>" alt="feed">
-                            <img src="<?= asset("/../estilo/images/feed7.jpg"); ?>" alt="feed">
-                            <img src="<?= asset("/../estilo/images/feed8.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed1.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed2.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed3.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed4.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed5.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed6.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed7.jpg"); ?>" alt="feed">
+                            <img src="<?= asset("/../images/feed8.jpg"); ?>" alt="feed">
                         </div>
                     </div>
                 </div>
@@ -177,17 +173,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Footer Area End -->
 
 <!-- Javascript -->
-
-
-
-
-<script src="<?= asset("/../estilo/js/jquery.js"); ?>"></script>
-<script src="<?= asset("/../estilo/js/jquery-ui.js"); ?>"></script>
-<script src="<?= asset("/../estilo/js/form.js"); ?>"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-
-
+<script src="<?= asset("/../js/jquery.js"); ?>"></script>
+<script src="<?= asset("/../js/jquery-ui.js"); ?>"></script>
+<script src="<?= asset("/../js/form.js"); ?>"></script>
+<script src="<?= asset("/../js/popper.min.js"); ?>"></script>
+<script src="<?= asset("/../js/bootstrap.min.js"); ?>"></script>
+<script src="<?= asset("/../js/main.js"); ?>"></script>
+<script src="<?= asset("/../js/jquery.mask.js"); ?>"></script>
+<script src="<?= asset("/../js/vendor/jquery.mask.min.js"); ?>"></script>
+<script src="<?= asset("/../js/vendor/jquery.mask.js"); ?>"></script>
 
 </body>
 </html>

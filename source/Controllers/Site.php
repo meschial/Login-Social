@@ -41,4 +41,18 @@ class Site extends Controller
             ->fetch(true)
         ]);
     }
+    public function teste()
+    {
+        $head = $this->seo->optimize(
+            "Bem vindo ao".site("name"),
+            site("desc"),
+            $this->router->route("site.teste"),
+            routeImage("Inicio")
+        )->render();
+
+        echo $this->view->render("theme/teste",[
+            "head" => $head,
+            "user" =>$this->user
+        ]);
+    }
 }

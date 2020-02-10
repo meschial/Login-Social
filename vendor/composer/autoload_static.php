@@ -37,6 +37,7 @@ class ComposerStaticInitcb7d1c757db35332c1898bc963d92679
         array (
             'MatthiasMullie\\PathConverter\\' => 29,
             'MatthiasMullie\\Minify\\' => 22,
+            'Masterkey\\ValidDocs\\' => 20,
         ),
         'L' => 
         array (
@@ -51,9 +52,11 @@ class ComposerStaticInitcb7d1c757db35332c1898bc963d92679
         ),
         'C' => 
         array (
+            'CoffeeCode\\Uploader\\' => 20,
             'CoffeeCode\\Router\\' => 18,
             'CoffeeCode\\Optimizer\\' => 21,
             'CoffeeCode\\DataLayer\\' => 21,
+            'CoffeeCode\\Cropper\\' => 19,
         ),
     );
 
@@ -78,6 +81,10 @@ class ComposerStaticInitcb7d1c757db35332c1898bc963d92679
         array (
             0 => __DIR__ . '/..' . '/matthiasmullie/minify/src',
         ),
+        'Masterkey\\ValidDocs\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/masterkey/valid-docs/src',
+        ),
         'League\\Plates\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/plates/src',
@@ -100,6 +107,10 @@ class ComposerStaticInitcb7d1c757db35332c1898bc963d92679
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'CoffeeCode\\Uploader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/coffeecode/uploader/src',
+        ),
         'CoffeeCode\\Router\\' => 
         array (
             0 => __DIR__ . '/..' . '/coffeecode/router/src',
@@ -111,6 +122,10 @@ class ComposerStaticInitcb7d1c757db35332c1898bc963d92679
         'CoffeeCode\\DataLayer\\' => 
         array (
             0 => __DIR__ . '/..' . '/coffeecode/datalayer/src',
+        ),
+        'CoffeeCode\\Cropper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/coffeecode/cropper/src',
         ),
     );
 

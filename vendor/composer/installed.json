@@ -1,5 +1,55 @@
 [
     {
+        "name": "coffeecode/cropper",
+        "version": "1.2.2",
+        "version_normalized": "1.2.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/robsonvleite/cropper.git",
+            "reference": "91c56ebaf9238547f7de3ab681e66ff427087a04"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/robsonvleite/cropper/zipball/91c56ebaf9238547f7de3ab681e66ff427087a04",
+            "reference": "91c56ebaf9238547f7de3ab681e66ff427087a04",
+            "shasum": ""
+        },
+        "require": {
+            "ext-fileinfo": "*",
+            "ext-gd": "*",
+            "ext-mbstring": "*",
+            "php": "^7.2"
+        },
+        "time": "2019-10-29T15:57:12+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "CoffeeCode\\Cropper\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Robson V. Leite",
+                "email": "cursos@upinside.com.br",
+                "role": "Developer"
+            }
+        ],
+        "description": "It is a easy and simple PHP image cropper and cache thumb manager",
+        "homepage": "http://www.upinside.com.br",
+        "keywords": [
+            "Coffeecode",
+            "image cache",
+            "image crop",
+            "image thumb",
+            "upload"
+        ]
+    },
+    {
         "name": "coffeecode/datalayer",
         "version": "1.1.4",
         "version_normalized": "1.1.4.0",
@@ -146,6 +196,62 @@
             "router",
             "routes",
             "upinside"
+        ]
+    },
+    {
+        "name": "coffeecode/uploader",
+        "version": "1.0.8",
+        "version_normalized": "1.0.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/robsonvleite/uploader.git",
+            "reference": "0a85f2d44115741e5e978c2430d8d9997fd44be7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/robsonvleite/uploader/zipball/0a85f2d44115741e5e978c2430d8d9997fd44be7",
+            "reference": "0a85f2d44115741e5e978c2430d8d9997fd44be7",
+            "shasum": ""
+        },
+        "require": {
+            "ext-exif": "*",
+            "ext-gd": "*",
+            "ext-mbstring": "*",
+            "php": "^7.2"
+        },
+        "time": "2019-10-29T13:47:46+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "CoffeeCode\\Uploader\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Robson V. Leite",
+                "email": "cursos@upinside.com.br",
+                "role": "Developer"
+            },
+            {
+                "name": "Tiago Chini",
+                "email": "tiago.chini@hotmail.com",
+                "role": "collaborator"
+            }
+        ],
+        "description": "It is a easy PHP upload manager for images, files and media in your application",
+        "homepage": "http://www.upinside.com.br",
+        "keywords": [
+            "Coffeecode",
+            "Image upload",
+            "file upload",
+            "media upload",
+            "upinside",
+            "upload"
         ]
     },
     {
@@ -591,6 +697,44 @@
             "templating",
             "views"
         ]
+    },
+    {
+        "name": "masterkey/valid-docs",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/MasterkeyInformatica/ValidDocs.git",
+            "reference": "475d0738283820ecc896447f1b0851aef2c5c5f9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/MasterkeyInformatica/ValidDocs/zipball/475d0738283820ecc896447f1b0851aef2c5c5f9",
+            "reference": "475d0738283820ecc896447f1b0851aef2c5c5f9",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.8"
+        },
+        "time": "2016-09-16T17:22:07+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Masterkey\\ValidDocs\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Matheus Lopes Santos",
+                "email": "fale_com_lopez@hotmail.com"
+            }
+        ],
+        "description": "Realiza a validação de documentos brasileiros, como CPF e CNPJ"
     },
     {
         "name": "matthiasmullie/minify",
