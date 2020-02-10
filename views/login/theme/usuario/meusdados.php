@@ -10,7 +10,7 @@
             <div class="col-lg-4">
                 <div class="sidebar">
                     <div class="single-item mb-4">
-                        <h4 class="mb-4">jobs type</h4>
+                        <h4 class="mb-4">Seus Dados</h4>
                         <a href="<?= $router->route("app.comentario"); ?>" class="sidebar-btn mb-3">
                             <strong>Comentário</strong>
                         </a>

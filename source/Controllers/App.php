@@ -69,6 +69,7 @@ class App extends Controller
                 $file = $_FILES["fileUpload"];
                 if (empty($file["type"]) || !in_array($file["type"], $upload::isAllowed())){
                     flash("success", "{$this->user->nome}, Deu ruim kkk!");
+                    $this->router->redirect("app.motorista");
                     return;
                 }else{
                   $uploaded =  $upload->upload($file, pathinfo($_SESSION["user"], PATHINFO_FILENAME), 500);
@@ -259,9 +260,8 @@ class App extends Controller
                 ]);
                 return;
             }
-                $login_id = $_SESSION["user"];
                 $user = new DadosUser();
-                $users = $user->find("login_id = :login_id", "login_id={$login_id}")->fetch(true);
+                $users = $user->find("login_id = :login_id", "login_id={$_SESSION["user"]}")->fetch(true);
             if ($users){
                 foreach ($users as $item) {
                     $novo = $item->id;
@@ -275,7 +275,6 @@ class App extends Controller
 
                 if ($user->save()){
                     flash("success", "Seus dados foram atualizados {$this->user->nome}!");
-
                     echo $this->ajaxResponse("redirect",[
                         "url" => $this->router->route("app.documentos")
                     ]);
