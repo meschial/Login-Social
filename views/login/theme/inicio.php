@@ -42,32 +42,34 @@
 </div>
 <!-- Search Area End -->
 
-
-    <!-- Search Area End -->
-<div class="container" style="margin-top: 2%">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="section-top text-center">
-                <h2>Veja alguns comentarios</h2>
-                <p>Open lesser winged midst wherein may morning</p>
+<!-- Pricing Table Starts -->
+<section class="pricing-table section-padding" style="margin-top: -5%">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-top text-center">
+                    <h2>Veja alguns de nossos comentarios</h2>
+                    <p>Venha fazer parte da MeLeva</p>
+                </div>
             </div>
         </div>
-    </div>
-<div style="margin-top: -5%">
-    <div class="card-deck">
-        <?php foreach($con as $tex): ?>
-        <div class="card">
-            <img src="<?= $tex->foto;?>" style="width: 80%; margin: 10%" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h3 style="color: #4C5B5C"><?= $tex->titulo;?></h3>
-                <p class="card-text"><?= $tex->texto; ?></p>
+        <div class="row">
+            <?php foreach($con as $tex): ?>
+            <div class="col-md-4">
+                <div class="single-table text-center mb-4">
+                    <div class="table-top">
+                        <img src="<?= $tex->foto;?>" style="width: 40%" class="card-img-top" alt="...">
+                        <h3 style="margin-top: 10px"> <?= $tex->nome; ?></h3>
+                    </div>
+                    <ul class="my-5">
+                        <h4 class="template-btn"><?= $tex->titulo;?></h4>
+                        <p><?= $tex->texto; ?></p>
+                    </ul>
+                </div>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">Nome: <?= $tex->nome; ?></small>
-            </div>
-        </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
+        </div>
     </div>
-</div>
-</div>
+</section>
+<!-- Pricing Table End -->

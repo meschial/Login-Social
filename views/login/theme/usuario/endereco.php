@@ -52,7 +52,11 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block active">Enviar</button>
+                                        <?php if (empty($end)): ?>
+                                            <button type="submit" class="btn btn-success btn-lg btn-block active">Cadastrar</button>
+                                        <?php else: ?>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block active">Atualizar</button>
+                                        <?php endif; ?>
                                     </div>
                                 </form>
                             </ul>

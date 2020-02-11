@@ -14,8 +14,6 @@ $router->namespace("Source\Controllers");
  */
 $router->group(null);
 $router->get("/", "Site:inicio", "site.inicio");
-$router->get("/teste", "Site:teste", "site.teste");
-$router->post("/teste", "Site:teste", "site.teste");
 
 /*
  * PROTEGIDOS GET
