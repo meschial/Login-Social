@@ -88,8 +88,6 @@
     </div>
 </header>
 
-
-
 <!-- Header Area End -->
 <div class="ajax_load">
     <div class="ajax_load_box">

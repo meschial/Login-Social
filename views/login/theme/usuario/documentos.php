@@ -3,7 +3,7 @@
 <div class="col-lg-8">
     <div class="main-content">
         <div class="single-content1">
-            <div class="single-job mb-4 d-lg-flex justify-content-between">
+            <div class="single-job mb-4 justify-content-between">
                 <div class="job-text">
                     <h1 style="color: #6c757d; text-align: center">Meus Documentos</h1>
                     <ul class="mt-4">
@@ -12,7 +12,6 @@
                             <div class="login_form_callback">
                                 <?= flash(); ?>
                             </div>
-
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -34,12 +33,10 @@
                                     <input type="text" value="<?= $userc->celular; ?>" data-mask="(99)99999-9999" placeholder="Digite seu número" class="form-control" name="celular">
                                 </div>
                             </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block active">Enviar</button>
+                        </form>
                     </ul>
                 </div>
-                <div class="job-btn align-self-center">
-                    <button type="submit" class="btn btn-outline-success">Cadastrar</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>

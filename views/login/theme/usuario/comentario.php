@@ -2,7 +2,7 @@
 <div class="col-lg-8">
     <div class="main-content">
         <div class="single-content1">
-            <div class="single-job mb-4 d-lg-flex justify-content-between">
+            <div class="single-job mb-4 justify-content-between">
                 <div class="job-text">
                     <h3 style="color: #6c757d; text-align: center">Deixe um comentário sobre a MeLeva : )</h3>
                     <ul class="mt-4">
@@ -25,12 +25,10 @@
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="texto" rows="5" maxlength="200"></textarea>
                                 </div>
                             </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block active">Enviar</button>
+                        </form>
                     </ul>
                 </div>
-                <div class="job-btn align-self-center">
-                    <button type="submit" class="btn btn-outline-success">Enviar</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>

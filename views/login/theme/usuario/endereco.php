@@ -3,7 +3,7 @@
         <div class="col-lg-8">
             <div class="main-content">
                 <div class="single-content1">
-                    <div class="single-job mb-4 d-lg-flex justify-content-between">
+                    <div class="single-job mb-4 justify-content-between">
                         <div class="job-text">
                             <h1 style="color: #6c757d; text-align: center">Meu Endereço</h1>
                             <ul class="mt-4">
@@ -37,26 +37,28 @@
                                             <input type="text" id="bairro" class="form-control" placeholder="Digite seu bairro" name="bairro">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>Cidade:</label>
-                                            <input type="text" id="cidade" disabled class="form-control" placeholder="Digite o cep correto"  name="cidade">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label>Estado:</label>
-                                            <input type="text" id="uf" class="form-control" disabled placeholder="Digite o cep correto"  name="estado">
-                                        </div>
-                                        <div class="form-group col-md-6">
                                             <label>Número:</label>
                                             <input type="text" class="form-control" placeholder="Digite o número"  name="numero">
                                         </div>
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Cidade:</label>
+                                            <input type="text" id="cidade" disabled class="form-control" placeholder="Digite o cep correto"  name="cidade">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Estado:</label>
+                                            <input type="text" id="uf" class="form-control" disabled placeholder="Digite o cep correto"  name="estado">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block active">Enviar</button>
+                                    </div>
+                                </form>
                             </ul>
                         </div>
-                        <div class="job-btn align-self-center">
-                            <button type="submit" class="btn btn-outline-success">Cadastrar</button>
+                        <div>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

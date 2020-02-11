@@ -10,6 +10,8 @@ define("SITE", [
     "root" => "https://localhost/tcc"
 ]);
 
+define("CONF_VIEW_IMG", __DIR__ . "/../");
+
 /*
  * SITE MINIFY
  */

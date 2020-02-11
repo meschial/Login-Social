@@ -72,20 +72,34 @@ class App extends Controller
                     $this->router->redirect("app.motorista");
                     return;
                 }else{
-                  $uploaded =  $upload->upload($file, pathinfo($_SESSION["user"], PATHINFO_FILENAME), 500);
-                    $mot = new Motorista();
-                    $mot->tipo_cnh = $data["tipo_cnh"];
-                    $mot->cnh = $data["cnh"];
-                    $mot->foto = $uploaded;
-                    $mot->ativo = "N";
-                    $mot->login_id = $_SESSION["user"];
-                    $mot->save();
-                    flash("success", "{$this->user->nome}, eu acho q salvou kk olha la!!");
-                    $this->router->redirect("app.motorista");
+                    $uploaded =  $upload->upload($file, pathinfo($_SESSION["user"], PATHINFO_FILENAME), 1920);
+                    $motos = (new Motorista())->find("login_id = :login_id", "login_id={$_SESSION["user"]}")->fetch(true);
+
+                    if ($motos){
+                        foreach ($motos as $moto) {
+                            $motos = ($moto->id);
+                        }
+                        $moto = (new Motorista())->findById($motos);
+                        $moto->tipo_cnh = $data["tipo_cnh"];
+                        $moto->cnh = $data["cnh"];
+                        $moto->foto = $uploaded;
+                        $moto->ativo = "N";
+                        $moto->save();
+                        flash("success", "{$this->user->nome}, eu acho q atualizou kk olha la!!");
+                        $this->router->redirect("app.motorista");
+                    }else{
+                        $mot = new Motorista();
+                        $mot->tipo_cnh = $data["tipo_cnh"];
+                        $mot->cnh = $data["cnh"];
+                        $mot->foto = $uploaded;
+                        $mot->ativo = "N";
+                        $mot->login_id = $_SESSION["user"];
+                        $mot->save();
+                        flash("success", "{$this->user->nome}, eu acho q salvou kk olha la!!");
+                        $this->router->redirect("app.motorista");
+                    }
                 }
             }
-
-
         }
 
         $head = $this->seo->optimize(
@@ -95,9 +109,26 @@ class App extends Controller
             routeImage("meusdados")
         )->render();
 
+        $login_id = $_SESSION["user"];
+        $mot = new Motorista();
+        $motorista = $mot->find("login_id = :login_id", "login_id={$login_id}")->fetch(true);
+        if ($motorista){
+            foreach ($motorista as $teste){
+                $userc = new \stdClass();
+                $userc->tipo_cnh = $teste->tipo_cnh;
+                $userc->cnh = $teste->cnh;
+                $userc->foto = $teste->foto;
+            }
+        }else{
+            $userc = new \stdClass();
+            $userc->tipo_cnh = null;
+            $userc->cnh = null;
+        }
+
         echo $this->view->render("theme/usuario/motorista",[
             "head" => $head,
             "user" => $this->user,
+            "userc" => $userc
         ]);
     }
 
