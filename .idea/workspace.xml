@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a24205f-230e-4005-a74e-dd822163834d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/Controllers/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/source/Controllers/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login/theme/rotas/rotas.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/login/theme/rotas/rotas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login/theme/theme.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/login/theme/theme.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login/theme/rotas/suasrotas.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/login/theme/rotas/suasrotas.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/login/theme/rotas/suasrotas.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="620">
-              <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+            <state relative-caret-position="200">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -217,7 +214,7 @@
       <path value="$PROJECT_DIR$/vendor/coffeecode/cropper" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="986" />
     <option name="y" value="62" />
     <option name="width" value="903" />
@@ -347,15 +344,15 @@
       <workItem from="1581167989760" duration="33329000" />
       <workItem from="1581332817342" duration="24090000" />
       <workItem from="1581390750593" duration="8774000" />
-      <workItem from="1581424143972" duration="15858000" />
+      <workItem from="1581424143972" duration="17087000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165742000" />
+    <option name="totallyTimeSpent" value="166971000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15031983" />
@@ -717,8 +714,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/login/theme/rotas/suasrotas.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+        <state relative-caret-position="200">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
     </entry>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Fev-2020 às 18:49
+-- Tempo de geração: 11-Fev-2020 às 21:12
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.1
 
@@ -206,9 +206,16 @@ CREATE TABLE `rota` (
   `data_inicio` date NOT NULL,
   `cidade_inicio` varchar(60) NOT NULL,
   `cidade_fim` varchar(60) NOT NULL,
-  `tamahno` char(2) NOT NULL,
+  `tamanho` char(2) NOT NULL,
   `motorista_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `rota`
+--
+
+INSERT INTO `rota` (`id`, `quantidade`, `valor`, `cep_inicio`, `cep_fim`, `data_inicio`, `cidade_inicio`, `cidade_fim`, `tamanho`, `motorista_id`) VALUES
+(1, 5, 10, '87830-000', '87490-000', '2020-02-11', 'tapira', 'Nova Olímpia', 'P', 14);
 
 -- --------------------------------------------------------
 
@@ -361,7 +368,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `rota`
 --
 ALTER TABLE `rota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `status`
