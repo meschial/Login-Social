@@ -16,39 +16,39 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label>Cep:</label>
-                                            <input type="text" class="form-control" data-mask="99999-999" id="cep" placeholder="Digite seu cep" name="cep">
+                                            <input type="text" class="form-control" data-mask="99999-999" value="<?= $end->cep; ?>" id="cep" placeholder="Digite seu cep" name="cep">
                                         </div>
                                         <div class="form-group col-md-8">
                                             <label>Rua:</label>
-                                            <input type="text" class="form-control" id="rua" placeholder="Digite o nome da rua"  name="rua">
+                                            <input type="text" class="form-control" id="rua" value="<?= $end->rua; ?>" placeholder="Digite o nome da rua"  name="rua">
                                         </div>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label>Complemento:</label>
-                                            <input type="text" class="form-control" placeholder="Digite o complemento" name="complemento">
+                                            <input type="text" class="form-control" value="<?= $end->complemento; ?>" placeholder="Digite o complemento" name="complemento">
                                         </div>
                                     </div>
 
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-9">
                                             <label>Bairro:</label>
-                                            <input type="text" id="bairro" class="form-control" placeholder="Digite seu bairro" name="bairro">
+                                            <input type="text" id="bairro" class="form-control" value="<?= $end->bairro; ?>" placeholder="Digite seu bairro" name="bairro">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-3">
                                             <label>Número:</label>
-                                            <input type="text" class="form-control" placeholder="Digite o número"  name="numero">
+                                            <input type="text" class="form-control" value="<?= $end->numero; ?>" placeholder="Digite o número"  name="numero">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Cidade:</label>
-                                            <input type="text" id="cidade" disabled class="form-control" placeholder="Digite o cep correto"  name="cidade">
+                                            <input type="text" id="cidade" name="cidade" Readonly  class="form-control" value="<?= $end->cidade; ?>" placeholder="Digite o cep correto">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Estado:</label>
-                                            <input type="text" id="uf" class="form-control" disabled placeholder="Digite o cep correto"  name="estado">
+                                            <input type="text" id="uf" name="estado" Readonly class="form-control" value="<?= $end->estado; ?>" placeholder="Digite o cep correto">
                                         </div>
                                     </div>
                                     <div>
