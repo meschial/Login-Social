@@ -73,9 +73,9 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item" href="<?= $router->route("app.meusdados");?>">Meus Dados</a>
-                                        <a class="dropdown-item" href="<?= $router->route("app.cartao");?>">Pag> Cartão</a>
+                                        <a class="dropdown-item" href="<?= $router->route("app.rota");?>">Minhas Rotas</a>
+                                        <a class="dropdown-item" href="<?= $router->route("app.cartao");?>">Pag. Cartão</a>
                                         <a class="dropdown-item" href="<?= $router->route("app.iniciocliente");?>">Resultados</a>
-                                        <a class="dropdown-item" href="<?= $router->route("app.motorista");?>">Motorista</a>
                                         <a class="dropdown-item" href="<?= $router->route("app.logoff"); ?>">sair</a>
                                     </div>
                                 </div>

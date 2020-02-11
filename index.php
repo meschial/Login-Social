@@ -26,6 +26,9 @@ $router->get("/comentario", "App:comentario", "app.comentario");
 $router->get("/cartao", "App:cartao", "app.cartao");
 $router->get("/meusdados", "App:meusdados", "app.meusdados");
 $router->get("/motorista", "App:motorista", "app.motorista");
+$router->get("/rota", "App:rota", "app.rota");
+$router->get("/novarota", "App:novarota", "app.novarota");
+$router->get("/suasrotas", "App:suasrotas", "app.suasrotas");
 
 $router->get("/sair", "App:logoff", "app.logoff");
 
@@ -37,6 +40,7 @@ $router->post("/documentos", "App:home", "app.home");
 $router->post("/endereco", "App:endereco", "app.endereco");
 $router->post("/comentario", "App:comentario", "app.comentario");
 $router->post("/motorista", "App:motorista", "app.motorista");
+$router->post("/novarota", "App:novarota", "app.novarota");
 
 /*
  * GET LOGIN

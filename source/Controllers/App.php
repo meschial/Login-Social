@@ -9,6 +9,7 @@ use Source\Models\Comentario;
 use Source\Models\DadosUser;
 use Source\Models\Endereco;
 use Source\Models\Motorista;
+use Source\Models\NovaRota;
 use Source\Models\User;
 
 /**
@@ -147,6 +148,95 @@ class App extends Controller
         )->render();
 
         echo $this->view->render("theme/usuario/iniciocliente",[
+            "head" => $head,
+            "user" => $this->user,
+        ]);
+
+    }
+
+    public function rota():void
+    {
+        $head = $this->seo->optimize(
+            "Bem vindo(a)",
+            site("desc"),
+            $this->router->route("app.iniciocliente"),
+            routeImage("Cliente")
+        )->render();
+
+        echo $this->view->render("theme/rotas/novarota",[
+            "head" => $head,
+            "user" => $this->user,
+        ]);
+
+    }
+    public function suasrotas():void
+    {
+        $head = $this->seo->optimize(
+            "Bem vindo(a)",
+            site("desc"),
+            $this->router->route("app.iniciocliente"),
+            routeImage("Cliente")
+        )->render();
+
+        echo $this->view->render("theme/rotas/suasrotas",[
+            "head" => $head,
+            "user" => $this->user,
+        ]);
+
+    }
+    public function novarota($data):void
+    {//id	quantidade	valor	cep_inicio	cep_fim	data_inicio	cidade_inicio	cidade_fim	tamahno	motorista_id
+
+        if (!empty($data)) {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+            if (in_array("", $data)) {
+                echo $this->ajaxResponse("message",[
+                    "type" => "error",
+                    "message" => "informe todos os campos!"
+                ]);
+                return;
+            }
+            $id = (new Motorista())->find("", "login_id={$_SESSION["user"]}")->fetch(true);
+            foreach ($id as $item){
+                $id = ($item->id);
+            }
+
+            $rota = new NovaRota();
+            $rota->quantidade = $data["quantidade"];
+            $rota->valor = $data["valor"];
+            $rota->cep_inicio = $data["cep_inicio"];
+            $rota->cep_fim = $data["cep_fim"];
+            $rota->data_inicio = $data["data_inicio"];
+            $rota->cidade_inicio = $data["cidade_inicio"];
+            $rota->cidade_fim = $data["cidade_fim"];
+            $rota->tamanho = $data["tamanho"];
+            $rota->motorista_id = $id;
+            $rota->save();
+            if ($rota->save()){
+                echo $this->ajaxResponse("message",[
+                    "type" => "success",
+                    "message" => "Deu certo!"
+                ]);
+                return;
+            }else{
+                echo $this->ajaxResponse("message",[
+                    "type" => "danger",
+                    "message" => "Deu ruim!"
+                ]);
+                return;
+            }
+        }
+
+
+
+        $head = $this->seo->optimize(
+            "Bem vindo(a)",
+            site("desc"),
+            $this->router->route("app.iniciocliente"),
+            routeImage("Cliente")
+        )->render();
+
+        echo $this->view->render("theme/rotas/novarota",[
             "head" => $head,
             "user" => $this->user,
         ]);
