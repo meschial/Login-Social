@@ -33,7 +33,6 @@ class User extends DataLayer
         }
         return true;
     }
-
     /**
      * @return bool
      */

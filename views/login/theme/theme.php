@@ -40,7 +40,7 @@
                 <div class="main-menu">
                     <ul>
                         <li class="active"><a href="<?= $router->route("site.inicio");?>">inicio</a></li>
-                        <li><a href="">tamanho</a></li>
+                        <li><a href="<?= $router->route("site.rotas");?>">Rotas</a></li>
                         <li><a href="job-category.html">category</a></li>
                         <li><a href="#">blog</a>
                             <ul class="sub-menu">

@@ -14,6 +14,7 @@ $router->namespace("Source\Controllers");
  */
 $router->group(null);
 $router->get("/", "Site:inicio", "site.inicio");
+$router->get("/rotas", "Site:rotas", "site.rotas");
 
 /*
  * PROTEGIDOS GET

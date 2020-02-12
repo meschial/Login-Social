@@ -38,6 +38,9 @@ class App extends Controller
         //RESTRIÇÃO DE ACESSO
     }
 
+    /**
+     *
+     */
     public function meusdados()
     {
         $head = $this->seo->optimize(
@@ -53,6 +56,10 @@ class App extends Controller
         ]);
     }
 
+    /**
+     * @param $data
+     * @throws \Exception
+     */
     public function motorista($data)
     {//id	tipo_cnh	cnh	foto	ativo	login_id
         if (!empty($data)) {
@@ -154,6 +161,9 @@ class App extends Controller
 
     }
 
+    /**
+     *
+     */
     public function rota():void
     {
         $head = $this->seo->optimize(
@@ -169,7 +179,15 @@ class App extends Controller
         ]);
 
     }
-    public function suasrotas():void
+
+
+
+
+
+    /**
+     *
+     */
+    public function rotasdisponiveis():void
     {
         $head = $this->seo->optimize(
             "Bem vindo(a)",
@@ -178,12 +196,18 @@ class App extends Controller
             routeImage("Cliente")
         )->render();
 
+
+
         echo $this->view->render("theme/rotas/suasrotas",[
             "head" => $head,
-            "user" => $this->user,
+            "user" => $this->user
         ]);
 
     }
+
+    /**
+     * @param $data
+     */
     public function novarota($data):void
     {//id	quantidade	valor	cep_inicio	cep_fim	data_inicio	cidade_inicio	cidade_fim	tamahno	motorista_id
 
@@ -320,6 +344,9 @@ class App extends Controller
         ]);
     }
 
+    /**
+     *
+     */
     public function cartao()
     {
         $head = $this->seo->optimize(
@@ -335,6 +362,9 @@ class App extends Controller
         ]);
     }
 
+    /**
+     * @param array $data
+     */
     public function comentario(array $data):void
     {
         if (!empty($data)){

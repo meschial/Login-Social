@@ -13,6 +13,11 @@ public function __construct()
     parent::__construct("motorista", ["tipo_cnh", "cnh", "foto"], "id", false);
 }
 
+    public function rota()
+    {
+        return (new NovaRota())->find("motorista_id = :id","id={$this->id}")->fetch();
+    }
+
 
 
 }
