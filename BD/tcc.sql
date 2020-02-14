@@ -1,388 +1,257 @@
--- phpMyAdmin SQL Dump
--- version 5.0.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 11-Fev-2020 às 21:12
--- Versão do servidor: 10.4.11-MariaDB
--- versão do PHP: 7.4.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Banco de dados: `tcc`
---
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `cartao`
---
-
-CREATE TABLE `cartao` (
-  `id` int(11) NOT NULL,
-  `nomeCartao` varchar(150) NOT NULL,
-  `mes` char(2) NOT NULL,
-  `ano` char(4) NOT NULL,
-  `numero` varchar(20) NOT NULL,
-  `codigo` char(5) NOT NULL,
-  `login_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `comentario`
---
-
-CREATE TABLE `comentario` (
-  `id` int(11) NOT NULL,
-  `titulo` varchar(80) NOT NULL,
-  `texto` text NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `foto` varchar(255) DEFAULT NULL,
-  `login_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `comentario`
---
-
-INSERT INTO `comentario` (`id`, `titulo`, `texto`, `nome`, `foto`, `login_id`) VALUES
-(1, 'Titulo do texto', 'If you are using the  element to specify multiple  elements for a specific , make sure to add the .img-* classes to the  and not to the  tag.', 'Marcos Murilo', 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2669783786469744&height=200&width=200&ext=1583779134&hash=AeSPai-ZpM3nbRVN', 1),
-(2, 'Titulo do texto 2', 'If you are using the  element to specify multiple  elements for a specific , make sure to add the .img-* classes to the  and not to the  tag.', 'Marcos Murilo', 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2669783786469744&height=200&width=200&ext=1583779134&hash=AeSPai-ZpM3nbRVN', 1),
-(4, 'Titulo do texto 3', 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual.', 'Marcos', 'https://gclaw.com.br/wp-content/themes/tema-gclaw-2017/assets/images/sem-foto.jpg', 3);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `documento`
---
-
-CREATE TABLE `documento` (
-  `id` int(11) NOT NULL,
-  `cpf` varchar(15) NOT NULL,
-  `rg` varchar(15) NOT NULL,
-  `date` date NOT NULL,
-  `celular` varchar(15) NOT NULL,
-  `login_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `documento`
---
-
-INSERT INTO `documento` (`id`, `cpf`, `rg`, `date`, `celular`, `login_id`) VALUES
-(8, '098.775.139-51', '10.518.198-0', '1997-04-18', '(44)99917-6602', 3),
-(9, '098.775.139-51', '22', '1997-04-18', '(44)99917-6602', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `endereco`
---
-
-CREATE TABLE `endereco` (
-  `id` int(11) NOT NULL,
-  `cep` varchar(10) NOT NULL,
-  `rua` varchar(100) NOT NULL,
-  `complemento` varchar(40) NOT NULL,
-  `bairro` varchar(50) NOT NULL,
-  `cidade` varchar(70) NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  `numero` varchar(10) NOT NULL,
-  `login_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `endereco`
---
-
-INSERT INTO `endereco` (`id`, `cep`, `rua`, `complemento`, `bairro`, `cidade`, `estado`, `numero`, `login_id`) VALUES
-(9, '87501-130', 'Avenida Rio Branco', 'casa', 'Zona I', 'Umuarama', 'PR', '12', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `login`
---
-
-CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `sobrenome` varchar(100) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `senha` varchar(150) NOT NULL,
-  `facebook_id` varchar(30) DEFAULT NULL,
-  `google_id` varchar(30) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL,
-  `forget` varchar(254) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `login`
---
-
-INSERT INTO `login` (`id`, `nome`, `sobrenome`, `email`, `senha`, `facebook_id`, `google_id`, `foto`, `forget`, `created_at`, `updated_at`) VALUES
-(1, 'Marcos Murilo', 'Meschial', 'marcosmurilo41@hotmail.com', '$2y$10$h/o4yJ.uLlHV1NfR6NxxcOj6Uwt1ZpJZsXUXGssS68bv1wUYnG7ce', '2669783786469744', NULL, 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2669783786469744&height=200&width=200&ext=1583779134&hash=AeSPai-ZpM3nbRVN', NULL, '2020-02-08 22:39:26', '2020-02-08 22:39:27'),
-(2, 'Marcos Murilo', 'Meschial', 'formatacaoumuarama@gmail.com', '$2y$10$e8kkeg90etpzga2WwvnqsuLQORKwrMOLIPp1Yh7veFLqouI6pxLv6', NULL, '113694760897549684052', 'https://lh3.googleusercontent.com/a-/AAuE7mCeRsfNt0lhtqpqukFPg2zGzT6cqCTSNesUDh69kv4', NULL, '2020-02-08 22:56:38', '2020-02-08 22:56:38'),
-(3, 'Marcos', 'Meschial', 'marcosmeschial@gmail.com', '$2y$10$7u/M0qH2Ua2pcLjQe4Hm0uOtjQDtPOlFUKiOSzc0obDFuI9dtScSW', NULL, '105375340011604853342', 'https://lh5.googleusercontent.com/--BaA8L5oZtA/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rejkLL1WyiB4Uzc0uOF-_K-etTHZA/photo.jpg', NULL, '2020-02-10 06:02:25', '2020-02-10 06:02:25');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `motorista`
---
-
-CREATE TABLE `motorista` (
-  `id` int(11) NOT NULL,
-  `tipo_cnh` char(23) NOT NULL,
-  `cnh` varchar(20) NOT NULL,
-  `foto` varchar(244) NOT NULL,
-  `ativo` char(2) DEFAULT NULL,
-  `login_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `motorista`
---
-
-INSERT INTO `motorista` (`id`, `tipo_cnh`, `cnh`, `foto`, `ativo`, `login_id`) VALUES
-(14, 'A/B', '222.222.222-22', 'img/motorista/2020/02/1.jpg', 'N', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pagamento`
---
-
-CREATE TABLE `pagamento` (
-  `id` int(11) NOT NULL,
-  `tipo` varchar(50) NOT NULL,
-  `valor` double NOT NULL,
-  `data` date NOT NULL,
-  `venda_id` int(11) NOT NULL,
-  `login_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `produto`
---
-
-CREATE TABLE `produto` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(45) NOT NULL,
-  `tamanho` char(2) NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  `login_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `rota`
---
-
-CREATE TABLE `rota` (
-  `id` int(11) NOT NULL,
-  `quantidade` int(3) NOT NULL,
-  `valor` double NOT NULL,
-  `cep_inicio` varchar(15) NOT NULL,
-  `cep_fim` varchar(15) NOT NULL,
-  `data_inicio` date NOT NULL,
-  `cidade_inicio` varchar(60) NOT NULL,
-  `cidade_fim` varchar(60) NOT NULL,
-  `tamanho` char(2) NOT NULL,
-  `motorista_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `rota`
---
-
-INSERT INTO `rota` (`id`, `quantidade`, `valor`, `cep_inicio`, `cep_fim`, `data_inicio`, `cidade_inicio`, `cidade_fim`, `tamanho`, `motorista_id`) VALUES
-(1, 5, 10, '87830-000', '87490-000', '2020-02-11', 'tapira', 'Nova Olímpia', 'P', 14);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `status`
---
-
-CREATE TABLE `status` (
-  `id` int(11) NOT NULL,
-  `tipo` char(2) NOT NULL,
-  `venda_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `venda`
---
-
-CREATE TABLE `venda` (
-  `id` int(11) NOT NULL,
-  `valor` double NOT NULL,
-  `date` date NOT NULL,
-  `rota_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `cartao`
---
-ALTER TABLE `cartao`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `comentario`
---
-ALTER TABLE `comentario`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `documento`
---
-ALTER TABLE `documento`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `endereco`
---
-ALTER TABLE `endereco`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `motorista`
---
-ALTER TABLE `motorista`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `pagamento`
---
-ALTER TABLE `pagamento`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `produto`
---
-ALTER TABLE `produto`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `rota`
---
-ALTER TABLE `rota`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `venda`
---
-ALTER TABLE `venda`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `cartao`
---
-ALTER TABLE `cartao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `comentario`
---
-ALTER TABLE `comentario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de tabela `documento`
---
-ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de tabela `endereco`
---
-ALTER TABLE `endereco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `motorista`
---
-ALTER TABLE `motorista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de tabela `pagamento`
---
-ALTER TABLE `pagamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `produto`
---
-ALTER TABLE `produto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `rota`
---
-ALTER TABLE `rota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `status`
---
-ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `venda`
---
-ALTER TABLE `venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- MySQL Script generated by MySQL Workbench
+-- 02/14/20 15:26:29
+-- Model: New Model    Version: 1.0
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema tcc
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema tcc
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `tcc` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `tcc` ;
+
+-- -----------------------------------------------------
+-- Table `tcc`.`login`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`login` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `nome` VARCHAR(100) NOT NULL COMMENT '',
+  `sobrenome` VARCHAR(150) NOT NULL COMMENT '',
+  `email` VARCHAR(100) NOT NULL COMMENT '',
+  `senha` VARCHAR(100) NOT NULL COMMENT '',
+  `ativo` CHAR(2) NULL COMMENT '',
+  `forget` VARCHAR(150) NULL COMMENT '',
+  `facebook_id` VARCHAR(45) NULL COMMENT '',
+  `google_id` VARCHAR(45) NULL COMMENT '',
+  `foto` VARCHAR(255) NULL COMMENT '',
+  `created_at` TIMESTAMP NULL COMMENT '',
+  `updated_at` TIMESTAMP NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`motorista`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`motorista` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `tipo_cnh` CHAR(4) NOT NULL COMMENT '',
+  `cnh` VARCHAR(20) NOT NULL COMMENT '',
+  `foto` VARCHAR(255) NOT NULL COMMENT '',
+  `ativo` CHAR(2) NULL COMMENT '',
+  `login_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_motorista_usuario1_idx` (`login_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_motorista_usuario1`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`rota`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`rota` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `quantidade` INT(3) NOT NULL COMMENT '',
+  `valor` DOUBLE NOT NULL COMMENT '',
+  `cep_inicio` VARCHAR(15) NOT NULL COMMENT '',
+  `cep_fim` VARCHAR(15) NOT NULL COMMENT '',
+  `data_inicio` DATE NOT NULL COMMENT '',
+  `cidade_inicio` VARCHAR(60) NOT NULL COMMENT '',
+  `cidade_fim` VARCHAR(60) NOT NULL COMMENT '',
+  `tamanho` CHAR(2) NOT NULL COMMENT '',
+  `login_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_rota_usuario1_idx` (`login_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_rota_usuario1`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`endereco`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`endereco` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `cep` VARCHAR(10) NOT NULL COMMENT '',
+  `rua` VARCHAR(100) NOT NULL COMMENT '',
+  `complemento` VARCHAR(100) NOT NULL COMMENT '',
+  `bairro` VARCHAR(50) NOT NULL COMMENT '',
+  `cidade` VARCHAR(70) NOT NULL COMMENT '',
+  `estado` VARCHAR(45) NOT NULL COMMENT '',
+  `numero` VARCHAR(10) NOT NULL COMMENT '',
+  `usuario_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_endereco_usuario1_idx` (`usuario_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_endereco_usuario1`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`venda`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`venda` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `valor` DOUBLE NOT NULL COMMENT '',
+  `date` DATE NOT NULL COMMENT '',
+  `rota_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_item_rota1_idx` (`rota_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_item_rota1`
+    FOREIGN KEY (`rota_id`)
+    REFERENCES `tcc`.`rota` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`pagamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`pagamento` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `tipo` VARCHAR(50) NOT NULL COMMENT '',
+  `valor` DOUBLE NOT NULL COMMENT '',
+  `data` DATE NOT NULL COMMENT '',
+  `venda_id` INT NOT NULL COMMENT '',
+  `login_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_pagamento_venda1_idx` (`venda_id` ASC)  COMMENT '',
+  INDEX `fk_pagamento_usuario1_idx` (`login_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_pagamento_venda1`
+    FOREIGN KEY (`venda_id`)
+    REFERENCES `tcc`.`venda` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pagamento_usuario1`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`produto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`produto` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `nome` VARCHAR(45) NOT NULL COMMENT '',
+  `tamanho` CHAR(2) NOT NULL COMMENT '',
+  `quantidade` INT NOT NULL COMMENT '',
+  `login_id` INT NOT NULL COMMENT '',
+  `item_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_produto_usuario1_idx` (`login_id` ASC)  COMMENT '',
+  INDEX `fk_produto_item1_idx` (`item_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_produto_usuario1`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_produto_item1`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `tcc`.`venda` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`status`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`status` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `tipo` CHAR(2) NOT NULL COMMENT '',
+  `venda_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_status_venda1_idx` (`venda_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_status_venda1`
+    FOREIGN KEY (`venda_id`)
+    REFERENCES `tcc`.`venda` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`cartao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`cartao` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `nomeCartao` VARCHAR(150) NOT NULL COMMENT '',
+  `mes` CHAR(2) NOT NULL COMMENT '',
+  `ano` CHAR(4) NOT NULL COMMENT '',
+  `numero` VARCHAR(20) NOT NULL COMMENT '',
+  `codigo` CHAR(5) NOT NULL COMMENT '',
+  `login_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_cartao_usuario1_idx` (`login_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_cartao_usuario1`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`comentario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`comentario` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `titulo` VARCHAR(80) NOT NULL COMMENT '',
+  `texto` TEXT NOT NULL COMMENT '',
+  `date` DATE NOT NULL COMMENT '',
+  `login_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_comentario_usuario1_idx` (`login_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_comentario_usuario1`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tcc`.`documentos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tcc`.`documentos` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `cpf` VARCHAR(15) NOT NULL COMMENT '',
+  `rg` VARCHAR(15) NOT NULL COMMENT '',
+  `date` DATE NOT NULL COMMENT '',
+  `celular` VARCHAR(45) NOT NULL COMMENT '',
+  `ativo` CHAR(2) NULL COMMENT '',
+  `login_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_documentos_login1_idx` (`login_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_documentos_login1`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `tcc`.`login` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

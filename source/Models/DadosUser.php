@@ -10,7 +10,7 @@ use Masterkey\ValidDocs\ValidDocs;
 class DadosUser extends DataLayer
 {public function __construct()
 {
-    parent::__construct("documento", ["cpf", "rg", "date", "celular"], "id", false);
+    parent::__construct("documentos", ["cpf", "rg", "date", "celular"], "id", false);
 }
     public function save(): bool
     {

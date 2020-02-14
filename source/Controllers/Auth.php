@@ -59,7 +59,7 @@ class Auth extends Controller
 
 
         $_SESSION["user"] = $user->id;
-        echo $this->ajaxResponse("redirect", ["url" => $this->router->route("app.home")]);
+        echo $this->ajaxResponse("redirect", ["url" => $this->router->route("site.inicio")]);
     }
 
     /**
@@ -96,9 +96,8 @@ class Auth extends Controller
         }
 
         $_SESSION["user"] = $user->id;
-        echo $this->ajaxResponse("redirect", [
-            "url" => $this->router->route("app.home")
-        ]);
+        $this->router->redirect("site.inicio");
+
 
     }
 
@@ -236,7 +235,7 @@ class Auth extends Controller
             unset($_SESSION["facebook_auth"]);
 
             $_SESSION["user"] = $user_by_id->id;
-            $this->router->redirect("app.home");
+            $this->router->redirect("site.inicio");
         }
 
         //login e-mmail
@@ -290,7 +289,7 @@ class Auth extends Controller
             unset($_SESSION["google_auth"]);
 
             $_SESSION["user"] = $user_by_id->id;
-            $this->router->redirect("app.home");
+            $this->router->redirect("site.inicio");
         }
 
         //login e-mmail

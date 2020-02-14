@@ -56,12 +56,12 @@ class Site extends Controller
             routeImage("Cliente")
         )->render();
 
-       // $list = (new Motorista())->find()->fetch(true);
+        $list = (new User())->find()->fetch(true);
         //** @var  $user Motorista*/
-        //foreach ($list as $user){
-          //  var_dump($user);
-            //var_dump($user->rota());
-       // }
+        foreach ($list as $user){
+            var_dump($user);
+            var_dump($user->rota());
+       }
 
         echo $this->view->render("theme/rotas",[
             "head" => $head,

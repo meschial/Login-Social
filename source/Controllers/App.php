@@ -180,10 +180,6 @@ class App extends Controller
 
     }
 
-
-
-
-
     /**
      *
      */
@@ -222,33 +218,42 @@ class App extends Controller
             }
             $id = (new Motorista())->find("", "login_id={$_SESSION["user"]}")->fetch(true);
             foreach ($id as $item){
-                $id = ($item->id);
+                $ativo = ($item->ativo);
             }
-
-            $rota = new NovaRota();
-            $rota->quantidade = $data["quantidade"];
-            $rota->valor = $data["valor"];
-            $rota->cep_inicio = $data["cep_inicio"];
-            $rota->cep_fim = $data["cep_fim"];
-            $rota->data_inicio = $data["data_inicio"];
-            $rota->cidade_inicio = $data["cidade_inicio"];
-            $rota->cidade_fim = $data["cidade_fim"];
-            $rota->tamanho = $data["tamanho"];
-            $rota->motorista_id = $id;
-            $rota->save();
-            if ($rota->save()){
-                echo $this->ajaxResponse("message",[
-                    "type" => "success",
-                    "message" => "Deu certo!"
-                ]);
-                return;
+            if ($ativo === "S"){
+                $rota = new NovaRota();
+                $rota->quantidade = $data["quantidade"];
+                $rota->valor = $data["valor"];
+                $rota->cep_inicio = $data["cep_inicio"];
+                $rota->cep_fim = $data["cep_fim"];
+                $rota->data_inicio = $data["data_inicio"];
+                $rota->cidade_inicio = $data["cidade_inicio"];
+                $rota->cidade_fim = $data["cidade_fim"];
+                $rota->tamanho = $data["tamanho"];
+                $rota->login_id = $_SESSION["user"];
+                $rota->save();
+                if ($rota->save()){
+                    echo $this->ajaxResponse("message",[
+                        "type" => "success",
+                        "message" => "Deu certo!"
+                    ]);
+                    return;
+                }else{
+                    echo $this->ajaxResponse("message",[
+                        "type" => "danger",
+                        "message" => "Deu ruim!"
+                    ]);
+                    return;
+                }
             }else{
                 echo $this->ajaxResponse("message",[
-                    "type" => "danger",
-                    "message" => "Deu ruim!"
+                    "type" => "alert",
+                    "message" => "{$this->user->nome}, você ainda não esta ativado como motorista!"
                 ]);
                 return;
             }
+
+
         }
 
 

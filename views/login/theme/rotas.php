@@ -22,7 +22,7 @@
                       <?php foreach ($rotas as $rota): ?>
                         <div class="single-job mb-4 d-lg-flex justify-content-between">
                             <div class="job-text">
-                                <h4>CEP ORIGEM: <?= $rota->cep_inicio." <strong> / CEP DESTINO: </strong> ".$rota->cep_fim?></h4>
+                                <h4><b>CEP ORIGEM: <?= $rota->cep_inicio." <strong> / CEP DESTINO: </strong> ".$rota->cep_fim?></b></h4>
                                 <ul class="mt-4">
                                     <li class="mb-3"><h5><i class="fa fa-map-marker"></i>Cidade Origem: <?= $rota->cidade_inicio?> / Destino: <?= $rota->cidade_fim?></h5></li>
                                     <li class="mb-3"><h5><i class="fa fa-pie-chart"></i>Qtd. de Pacotes: <?= $rota->quantidade;?> / Valor por pacote R$: <?= $rota->valor;?></h5></li>

@@ -13,9 +13,9 @@ class NovaRota extends DataLayer
         parent::__construct("rota", ["quantidade", "valor", "cep_inicio", "cep_fim", "data_inicio", "cidade_inicio", "cidade_fim", "tamanho"], "id", false);
     }
 
-    public function rota(Motorista $motorista, string $cidade_inicio): NovaRota
+    public function rota(User $user, string $cidade_inicio): NovaRota
     {
-        $this->motorista_id = $motorista->id;
+        $this->login_id = $user->id;
         $this->cidade_inicio = $cidade_inicio;
         return $this;
     }

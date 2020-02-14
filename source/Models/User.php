@@ -20,6 +20,12 @@ class User extends DataLayer
         parent::__construct("login", ["nome", "sobrenome", "email", "senha"]);
     }
 
+    public function rota()
+    {
+        return (new NovaRota())->find("login_id = :id","id={$this->id}")->fetch(true);
+    }
+
+
     /**
      * @return bool
      */
