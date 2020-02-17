@@ -5,6 +5,7 @@ namespace Source\Models;
 
 
 use CoffeeCode\DataLayer\DataLayer;
+use Exception;
 
 class NovaRota extends DataLayer
 {

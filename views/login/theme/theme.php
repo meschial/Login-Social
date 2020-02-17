@@ -41,7 +41,7 @@
                     <ul>
                         <li class="active"><a href="<?= $router->route("site.inicio");?>">inicio</a></li>
                         <li><a href="<?= $router->route("site.rotas");?>">Rotas</a></li>
-                        <li><a href="job-category.html">category</a></li>
+                        <li><a href="<?= $router->route("app.contratarota");?>">teste</a></li>
                         <li><a href="#">blog</a>
                             <ul class="sub-menu">
                                 <li><a href="blog-home.html">Blog Home</a></li>

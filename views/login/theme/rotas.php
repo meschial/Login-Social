@@ -30,7 +30,15 @@
                                 </ul>
                             </div>
                             <div class="job-btn align-self-center">
-                                <a href="#" class="forth-btn">Contratar</a>
+
+                                <form class="auth_form" action="<?= $router->route("app.venda"); ?>" method="post" enctype="multipart/form-data">
+                                    <div class="login_form_callback">
+                                        <?= flash(); ?>
+                                    </div>
+                                    <input hidden name="id" value="<?= $rota->id ?>">
+                                    <button type="submit">Enviar</button>
+                                </form>
+
                             </div>
                         </div>
                         <?php endforeach; ?>

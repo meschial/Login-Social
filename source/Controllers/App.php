@@ -6,10 +6,12 @@ namespace Source\Controllers;
 use CoffeeCode\Uploader\Image;
 use Source\Core\Controller;
 use Source\Models\Comentario;
+use Source\Models\ContrataRota;
 use Source\Models\DadosUser;
 use Source\Models\Endereco;
 use Source\Models\Motorista;
 use Source\Models\NovaRota;
+use Source\Models\Teste;
 use Source\Models\User;
 
 /**
@@ -120,18 +122,19 @@ class App extends Controller
         )->render();
 
         $mot = new Motorista();
-        $motorista = $mot->find("", "login_id={$_SESSION["user"]}")->fetch(true);
+        $motorista = $mot->find("login_id = :login_id", "login_id={$_SESSION["user"]}")->fetch(true);
         if ($motorista){
-            foreach ($motorista as $teste){
+            foreach ($motorista as $moto){
                 $userc = new \stdClass();
-                $userc->tipo_cnh = $teste->tipo_cnh;
-                $userc->cnh = $teste->cnh;
-                $userc->foto = $teste->foto;
+                $userc->tipo_cnh = $moto->tipo_cnh;
+                $userc->cnh = $moto->cnh;
+                $userc->foto = $moto->foto;
             }
         }else{
             $userc = new \stdClass();
             $userc->tipo_cnh = null;
             $userc->cnh = null;
+            $userc->foto = null;
         }
 
         echo $this->view->render("theme/usuario/motorista",[
@@ -180,6 +183,55 @@ class App extends Controller
 
     }
 
+    public function contratarota(?array $data)
+    {//valor	date	rota_id
+
+        $head = $this->seo->optimize(
+            "Bem vindo(a)",
+            site("desc"),
+            $this->router->route("app.iniciocliente"),
+            routeImage("Cliente")
+        )->render();
+
+
+        echo $this->view->render("theme/rotas/contratarota",[
+            "head" => $head,
+            "user" => $this->user,
+            "rota" => (new NovaRota())->findById($data["id"])
+        ]);
+    }
+
+    public function venda(array $data)
+    {
+    if ($data["id"]){
+        $valida = (new ContrataRota())->find("status = :status", "status=A")->fetch(true);
+        if ($valida){
+            flash("success", "vc tem uma rota em andamento!");
+          
+        }else{
+            $venda = new ContrataRota();
+            $venda->date = date("Y-m-d");
+            $venda->status = "A";
+            $venda->rota_id = $data["id"];
+            $venda->login_id = $_SESSION["user"];
+            $venda->save();
+        }
+
+    }
+        $head = $this->seo->optimize(
+            "Bem vindo(a)",
+            site("desc"),
+            $this->router->route("app.iniciocliente"),
+            routeImage("Cliente")
+        )->render();
+
+        echo $this->view->render("theme/rotas/contratarota",[
+            "head" => $head,
+            "user" => $this->user,
+            "rotas" => (new ContrataRota())->find("status = :status", "status=A")->fetch(true)
+        ]);
+    }
+
     /**
      *
      */
@@ -201,8 +253,10 @@ class App extends Controller
 
     }
 
+
     /**
      * @param $data
+     * @throws \Exception
      */
     public function novarota($data):void
     {//id	quantidade	valor	cep_inicio	cep_fim	data_inicio	cidade_inicio	cidade_fim	tamahno	motorista_id
@@ -216,22 +270,59 @@ class App extends Controller
                 ]);
                 return;
             }
+
+            $dt_atual = date("Y-m-d");
+            if ($data["data_inicio"] < $dt_atual){
+                echo $this->ajaxResponse("message",[
+                    "type" => "error",
+                    "message" => "A data inicio não pode ser menor que a data atual!"
+                ]);
+                return;
+            }
+
+            if ($data["data_inicio"] > $data["data_fim"]){
+                echo $this->ajaxResponse("message",[
+                    "type" => "error",
+                    "message" => "A data fim não pode ser maior que a data inicio!"
+                ]);
+                return;
+            }
+
             $id = (new Motorista())->find("", "login_id={$_SESSION["user"]}")->fetch(true);
             foreach ($id as $item){
                 $ativo = ($item->ativo);
             }
+
             if ($ativo === "S"){
+            $data_end = strtotime($data["data_fim"]);
+            $data_dia = strtotime('+1 day', $data_end);
+            $data_fim = date('Y-m-d', $data_dia);
+            $start = new \DateTime($data["data_inicio"]);
+            $end = new \DateTime($data_fim);
+            $periodd = new \DatePeriod($start , new \DateInterval('P1D') , $end);
+
+            $qtd = $data["quantidade"];
+            $valor= $data["valor"];
+            $cep_inicio = $data["cep_inicio"];
+            $cep_fim = $data["cep_fim"];
+            $cidade_inicio = $data["cidade_inicio"];
+            $cidade_fim = $data["cidade_fim"];
+            $tamanho = $data["tamanho"];
+
+            foreach($periodd as $period) {
                 $rota = new NovaRota();
-                $rota->quantidade = $data["quantidade"];
-                $rota->valor = $data["valor"];
-                $rota->cep_inicio = $data["cep_inicio"];
-                $rota->cep_fim = $data["cep_fim"];
-                $rota->data_inicio = $data["data_inicio"];
-                $rota->cidade_inicio = $data["cidade_inicio"];
-                $rota->cidade_fim = $data["cidade_fim"];
-                $rota->tamanho = $data["tamanho"];
+                $data = $period->format('Y/m/d');
+                $rota->quantidade = $qtd;
+                $rota->valor = $valor;
+                $rota->cep_inicio = $cep_inicio;
+                $rota->cep_fim = $cep_fim;
+                $rota->data_inicio = $data;
+                $rota->cidade_inicio = $cidade_inicio;
+                $rota->cidade_fim = $cidade_fim;
+                $rota->tamanho = $tamanho;
                 $rota->login_id = $_SESSION["user"];
                 $rota->save();
+            }
                 if ($rota->save()){
                     echo $this->ajaxResponse("message",[
                         "type" => "success",
@@ -252,11 +343,7 @@ class App extends Controller
                 ]);
                 return;
             }
-
-
         }
-
-
 
         $head = $this->seo->optimize(
             "Bem vindo(a)",
@@ -319,7 +406,7 @@ class App extends Controller
         )->render();
 
         $end = new Endereco();
-        $endereco = $end->find("", "login_id={$_SESSION["user"]}")->fetch(true);
+        $endereco = $end->find("login_id = :login_id", "login_id={$_SESSION["user"]}")->fetch(true);
         if ($endereco){
             foreach ($endereco as $item){
                 $end = new \stdClass();
